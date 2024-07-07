@@ -19,6 +19,7 @@ from .nms import nms
 from vis_utils import html_embed_image, html_colored_span, vis_masks
 
 
+
 def parse_step(step_str,partial=False):
     tokens = list(tokenize.generate_tokens(io.StringIO(step_str).readline))
     output_var = tokens[0].string
@@ -87,8 +88,8 @@ class EvalInterpreter():
             if isinstance(var_value,str):
                 if var_value in ['yes','no']:
                     prog_state[var_name] = var_value=='yes'
-                elif var_value.isdecimal():
-                    prog_state[var_name] = var_value
+                elif var_value.isdigit():
+                    prog_state[var_name] = int(var_value)
                 else:
                     prog_state[var_name] = f"'{var_value}'"
             else:
@@ -100,7 +101,12 @@ class EvalInterpreter():
             step_input = step_input.replace('xor','!=')
 
         step_input = step_input.format(**prog_state)
-        step_output = eval(step_input)
+        print(f'EVAL STEP : {step_input}')
+        try:
+            step_output = eval(step_input)
+        except TypeError as e:
+            raise TypeError(f"Error in evaluating expression '{step_input}': {e}")
+        
         prog_step.state[output_var] = step_output
         if inspect:
             html_str = self.html(eval_expression, step_input, step_output, output_var)
@@ -1041,7 +1047,7 @@ List:"""
 
     def get_list(self,text,list_max):
         response = openai.Completion.create(
-            model="text-davinci-002",
+            model= "gpt-3.5-turbo-instruct",
             prompt=self.prompt_template.format(list_max=list_max,text=text),
             temperature=0.7,
             max_tokens=256,
@@ -1207,7 +1213,7 @@ class TagInterpreter():
         W,H = img.size
         img1 = img.copy()
         draw = ImageDraw.Draw(img1)
-        font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf', 16)
+        font = ImageFont.load_default()
         for i,obj in enumerate(objs):
             box = obj['box']
             draw.rectangle(box,outline='green',width=4)
@@ -1254,7 +1260,7 @@ class ReplaceInterpreter():
 
     def __init__(self):
         print(f'Registering {self.step_name} step')
-        device = "cuda"
+        self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         model_name = "runwayml/stable-diffusion-inpainting"
         self.pipe = StableDiffusionInpaintPipeline.from_pretrained(
             model_name,

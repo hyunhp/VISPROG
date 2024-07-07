@@ -45,12 +45,11 @@ class ProgramInterpreter:
 
         return step_output, prog.state
 
-'''MODEL CALLING FUNCTION CHANGED'''
+
 class ProgramGenerator():
-    def __init__(self,prompter, model, temperature=0.7,top_p=0.5,prob_agg='mean'):
+    def __init__(self,prompter,temperature=0.7,top_p=0.5,prob_agg='mean'):
         openai.api_key = os.getenv("OPENAI_API_KEY")
         self.prompter = prompter
-        self.model = model
         self.temperature = temperature
         self.top_p = top_p
         self.prob_agg = prob_agg
@@ -73,7 +72,7 @@ class ProgramGenerator():
 
     def generate(self,inputs):
         response = openai.Completion.create(
-            model= self.model,
+            model="text-davinci-003",
             prompt=self.prompter(inputs),
             temperature=self.temperature,
             max_tokens=512,

@@ -3,6 +3,7 @@ import base64
 import numpy as np
 from io import BytesIO
 import math
+import os
 
 def image_formatter(img_path,size=224,vertical_align='middle'):
     img = Image.open(img_path)
@@ -40,26 +41,31 @@ def image_grid(imgs,rows,cols):
         grid.paste(img, box=(i%cols*w, i//cols*h))
     return grid
 
-def vis_masks(img,objs,labels=None):
-    if len(objs)==0:
-        return Image.new('RGB',size=img.size)
+def vis_masks(img, objs, labels=None):
+    if len(objs) == 0:
+        return Image.new('RGB', size=img.size)
 
     imgs = []
     for obj in objs:
         obj_img = mask_image(img, obj['mask'])
         canvas = ImageDraw.Draw(obj_img)
-        canvas.rectangle(obj['box'],outline='green',width=4)
-
+        canvas.rectangle(obj['box'], outline='green', width=4)
         imgs.append(obj_img)
 
     if labels is not None:
-        font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf', 60)
-        for img,label in zip(imgs,labels):
+        font_path = '/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf'
+        if not os.path.exists(font_path):
+            # Use a default font if the specified font is not available
+            font = ImageFont.load_default()
+        else:
+            font = ImageFont.truetype(font_path, 60)
+        
+        for img, label in zip(imgs, labels):
             canvas = ImageDraw.Draw(img)
-            canvas.text((0,0),label,fill='white',font=font)
+            canvas.text((0, 0), label, fill='white', font=font)
 
-    cols=math.ceil(math.sqrt(len(imgs)))
-    cols=min(3,len(imgs))
-    rows=math.ceil(len(imgs)/3)
+    cols = math.ceil(math.sqrt(len(imgs)))
+    cols = min(3, len(imgs))
+    rows = math.ceil(len(imgs) / 3)
     return image_grid(imgs, rows, cols)
     

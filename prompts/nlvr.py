@@ -23,22 +23,22 @@ FINAL_ANSWER=RESULT(var=ANSWER2)
 """,
 """Statement: One dog is laying down.
 Program:
-ANSWER0=VQA(image=LEFT,question='How many dogs are laying down?')
-ANSWER1=VQA(image=RIGHT,question='How many dogs are laying down?')
+ANSWER0=VQA(image=LEFT,question='How many dogs are laying down?, Please answer in digit format (0, 1, 2, and etc.)')
+ANSWER1=VQA(image=RIGHT,question='How many dogs are laying down?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER2=EVAL(expr='{ANSWER0} + {ANSWER1} == 1')
 FINAL_ANSWER=RESULT(var=ANSWER2)
 """,
 """Statement: There are two blue and yellow birds
 Program:
-ANSWER0=VQA(image=LEFT,question='How many blue and yellow birds are in the image?')
-ANSWER1=VQA(image=RIGHT,question='How many blue and yellow birds are in the image?')
+ANSWER0=VQA(image=LEFT,question='How many blue and yellow birds are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
+ANSWER1=VQA(image=RIGHT,question='How many blue and yellow birds are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER2=EVAL(expr='{ANSWER0} + {ANSWER1} == 2')
 FINAL_ANSWER=RESULT(var=ANSWER2)
 """,
 """Statement: A single wolf is howling and silhouetted by the moon in one of the images.
 Program:
-ANSWER0=VQA(image=LEFT,question='How many wolves are in the image?')
-ANSWER1=VQA(image=RIGHT,question='How many wolves are in the image?')
+ANSWER0=VQA(image=LEFT,question='How many wolves are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
+ANSWER1=VQA(image=RIGHT,question='How many wolves are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER2=VQA(image=LEFT,question='Is the wolf howling and silhouetted by the moon?')
 ANSWER3=VQA(image=RIGHT,question='Is the wolf howling and silhouetted by the moon?')
 ANSWER4=EVAL(expr='{ANSWER0} == 1 and {ANSWER2}')
@@ -55,7 +55,7 @@ FINAL_ANSWER=RESULT(var=ANSWER2)
 """,
 """Statement: there are at least seven wine bottles in the image on the left
 Program:
-ANSWER0=VQA(image=LEFT,question='How many wine bottles are in the image?')
+ANSWER0=VQA(image=LEFT,question='How many wine bottles are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER1=EVAL(expr='{ANSWER0} >= 7')
 FINAL_ANSWER=RESULT(var=ANSWER1)
 """,
@@ -72,8 +72,8 @@ FINAL_ANSWER=RESULT(var=ANSWER6)
 """,
 """Statement: An image shows exactly two seals in direct contact, posed face to face.
 Program:
-ANSWER0=VQA(image=LEFT,question='How many seals are in the image?')
-ANSWER1=VQA(image=RIGHT,question='How many seals are in the image?')
+ANSWER0=VQA(image=LEFT,question='How many seals are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
+ANSWER1=VQA(image=RIGHT,question='How many seals are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER2=VQA(image=LEFT,question='Are the seals in direct contact?')
 ANSWER3=VQA(image=RIGHT,question='Are the seals in direct contact?')
 ANSWER4=VQA(image=LEFT,question='Are the seals posed face to face?')
@@ -85,7 +85,7 @@ FINAL_ANSWER=RESULT(var=ANSWER8)
 """,
 """Statement: There is at least two parrots in the right image.
 Program:
-ANSWER0=VQA(image=RIGHT,question='How many parrots are in the image?')
+ANSWER0=VQA(image=RIGHT,question='How many parrots are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER1=EVAL(expr='{ANSWER0} >= 2')
 FINAL_ANSWER=RESULT(var=ANSWER1)
 """,
@@ -97,8 +97,8 @@ FINAL_ANSWER=RESULT(var=ANSWER1)
 """,
 """Statement: There are two wolves in each image.
 Program:
-ANSWER0=VQA(image=LEFT,question='How many wolves are in the image?')
-ANSWER1=VQA(image=RIGHT,question='How many wolves are in the image?')
+ANSWER0=VQA(image=LEFT,question='How many wolves are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
+ANSWER1=VQA(image=RIGHT,question='How many wolves are in the image?, Please answer in digit format (0, 1, 2, and etc.)')
 ANSWER2=EVAL(expr='{ANSWER0} == 2 and {ANSWER1} == 2')
 FINAL_ANSWER=RESULT(var=ANSWER2)
 """

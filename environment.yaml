@@ -15,3 +15,5 @@ dependencies:
     - diffusers==0.14.0
     - accelerate==0.17.1
     - ipykernel==6.15.2
+    - python-magic-bin==0.4.14
+    - python-dotenv==1.0.1
