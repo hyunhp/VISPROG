@@ -5,7 +5,7 @@ Visual programming framework that utilizes natural language instructions and int
 ## HOW TO USE VISPROG
 
 1. **Install Anaconda (If you haven't installed it yet)**  
-   Follow the instructions to install Anaconda from [here](https://docs.anaconda.com/anaconda/install/).
+   Follow the instructions to install Anaconda from <a href="https://docs.anaconda.com/anaconda/install/" target="_blank">here</a>.
 
 2. **Create a new folder to use VISPROG**
 
@@ -43,6 +43,6 @@ Visual programming framework that utilizes natural language instructions and int
     4. Update NLVR prompts to debug answers in digit format (e.g., 1, 2, 3) instead of text format (e.g., one, two, three) in the eval interpreters function.
 
 6. **Handle the 410 error encountered when using the `FaceDetInterpreter` class:**
-    - Download the [DSFD_RES152.pth](https://drive.google.com/file/d/1WeXlNYsM6dMP3xQQELI-4gxhwKUQxc3-/view) model and save it into your local torch hub folder directory (e.g., `C:/{USER_NAME}/.cache/torch/hub/checkpoints`).
+    - Download the <a href="https://drive.google.com/file/d/1WeXlNYsM6dMP3xQQELI-4gxhwKUQxc3-/view" target="_blank">DSFD_RES152.pth</a> model and save it into your local torch hub folder directory (e.g., `C:/{USER_NAME}/.cache/torch/hub/checkpoints`).
 
 **UPDATED AT:** 7th July, 2024
