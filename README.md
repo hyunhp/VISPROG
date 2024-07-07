@@ -42,4 +42,7 @@ Visual programming framework that utilizes natural language instructions and int
     3. Update CUDA usage inside `step_interpreters.py`.
     4. Update NLVR prompts to debug answers in digit format (e.g., 1, 2, 3) instead of text format (e.g., one, two, three) in the eval interpreters function.
 
+6. **Handle the 410 error encountered when using the `FaceDetInterpreter` class:**
+    - Download the [DSFD_RES152.pth](https://drive.google.com/file/d/1WeXlNYsM6dMP3xQQELI-4gxhwKUQxc3-/view) model and save it into your local torch hub folder directory (e.g., `C:/{USER_NAME}/.cache/torch/hub/checkpoints`).
+
 **UPDATED AT:** 7th July, 2024
